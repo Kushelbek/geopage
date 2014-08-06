@@ -23,5 +23,4 @@ cot_extrafield_add($db_pages, 'geo_region', 'input', $R['input_text'], '', '', 0
 cot_extrafield_add($db_pages, 'geo_locality', 'input', $R['input_text'], '', '', 0, 'HTML', 'Locality');
 cot_extrafield_add($db_pages, 'geo_street', 'input', $R['input_text'], '', '', 0, 'HTML', 'Street');
 
-?>
  

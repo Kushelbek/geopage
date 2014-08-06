@@ -19,6 +19,7 @@
 defined('COT_CODE') or die('Wrong URL.');
 
 require_once cot_langfile('geopage', 'plug');
+require_once cot_incfile('geopage', 'plug', $cfg['plugin']['geopage']['engine']);
 
 require_once cot_incfile('forms');
 require_once cot_incfile('extrafields');
@@ -47,36 +48,10 @@ if ($a == 'update' && !empty($_POST['rpage_geo_country']))
 	}
 }
 
-switch ($cfg['plugin']['geopage']['key'])
-{
-	default:
-		$mapdriver = 'http://api-maps.yandex.ru/1.1/index.xml?key='.$cfg['plugin']['geopage']['key'];
-		break;
-}
-
-
-$GEOJS = '
-<script type="text/javascript" src="'.$cfg['plugins_dir'].'/geopage/lib/mxn.js?('.$cfg['plugin']['geopage']['engine'].')"></script>
-<script src="'.$mapdriver.'" type="text/javascript"></script>
-<script type="text/javascript">
-	var map_engine = "'.$cfg['plugin']['geopage']['engine'].'";
-	var map_defzoom = "'.$cfg['plugin']['geopage']['defzoom'].'";
-	var map_deflat = "'.$cfg['plugin']['geopage']['deflat'].'";
-	var map_deflon = "'.$cfg['plugin']['geopage']['deflon'].'";
-	var map_pointzoom = "'.$cfg['plugin']['geopage']['pointzoom'].'";
-	var map_lat = "'.(float)$pag['page_geo_latitude'].'";
-	var map_lon = "'.(float)$pag['page_geo_longitude'].'";
-	var map_title = "'.htmlspecialchars($pag['page_title']).'";	
-</script>
-<script type="text/javascript" src="'.$cfg['plugins_dir'].'/geopage/js/admin.js"></script>';
-
-
 $sql = $db->query("SELECT * FROM $db_pages WHERE 
-	(page_geo_country <> '' AND page_geo_region <> '' AND page_geo_street <> '' AND page_geo_locality <> '') 
-	AND (page_geo_latitude = '' AND page_geo_longitude = '') ORDER BY page_date DESC LIMIT 100");
+	page_geo_locality <> '' AND page_geo_latitude = '' AND page_geo_longitude = '' ORDER BY page_date DESC LIMIT 100");
 $totalcount = $db->query("SELECT COUNT(*) FROM $db_pages WHERE 
-	(page_geo_country <> '' AND page_geo_region <> '' AND page_geo_street <> '' AND page_geo_locality <> '') 
-	AND (page_geo_latitude = '' AND page_geo_longitude = '')")->fetchColumn();
+	page_geo_locality <> ''	AND (page_geo_latitude = '' AND page_geo_longitude = '')")->fetchColumn();
 
 $jj = 0;
 foreach ($sql->fetchAll() as $pag)
@@ -103,10 +78,9 @@ if($jj == 0)
 }
 
 $geo_t->assign(array(
-	'PAGE_GEOJS' => $GEOJS,
 	'PAGE_URL' => cot_url('admin', 'm=other&p=geopage&a=update'),
 ));
 $geo_t->parse('MAIN');
 $plugin_body = $geo_t->text('MAIN');
 
-?>
+cot_print(cot_mapgetlatlng("Беларусь", "", "Mинск", "Ландера 22"));

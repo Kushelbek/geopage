@@ -24,7 +24,7 @@ function cot_mapinicialize($mapdivid, $lat, $lng, $zoom, $autocenter = true, $ke
 		'.$map_places.'
   ');
 	cot_rc_link_footer("http://maps.google.com/maps/api/js??libraries=geometry&sensor=true");
-	cot_rc_link_footer($cfg['plugins_dir'] . "/geopage/inc/geopage.googlev3.js");
+	cot_rc_link_footer($cfg['plugins_dir'] . "/geopage/js/geopage.googlev3.js");
 
 }
 
@@ -47,4 +47,40 @@ function cot_mapmarker($text, $lat, $lng)
 		});');
 }
 
-?>
+function cot_mapgetlatlng($country='', $region = '', $locality = '', $street = '')
+{
+	// http://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&sensor=true_or_false
+	// Инициализируем курл
+	
+	//просп. Ленина, 51/1, Нижний Новгород, Нижегородская область
+	//Каменецкий, Брест, Беларусь
+	$adr = $street;
+	$locality && $adr .= (!empty($adr) ? ', ' : '') . $locality;
+	$region && $adr .= (!empty($adr) ? ', ' : '') . $region;
+	$country && $adr .= (!empty($adr) ? ', ' : '') . $country;
+	$adr = str_replace(' ', '+', $adr);
+	
+	if(empty($adr))
+	{
+		return false;
+	}
+	
+	$ch = curl_init('http://maps.googleapis.com/maps/api/geocode/json?address='.$adr.'&sensor=true_or_false');
+
+	// Параметры курла
+	curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36');
+	curl_setopt($ch, CURLOPT_HEADER, 0);
+	// Следующая опция необходима для того, чтобы функция curl_exec() возвращала значение а не выводила содержимое переменной на экран
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+
+	// Получаем html
+	$result = curl_exec($ch);
+
+	// Отключаемся
+	curl_close($ch);
+	
+	json_decode($result, true);
+	$lat = $result["results"]["geometry"]['location']['lat'];
+	$lng = $result["results"]["geometry"]['location']['lng'];
+	return array($lat, $lng);
+}

@@ -6,8 +6,8 @@ geopage
 
 При использовании в следующие шаблоны необходимо добавить:
 
-pag.add.tpl
-===========
+page.add.tpl
+============
 
 	<tr>
 		<td colspan="2">
@@ -28,8 +28,8 @@ pag.add.tpl
 		</td>
 	</tr>
 
-pag.edit.tpl
-============
+page.edit.tpl
+=============
 
 	<tr>
 		<td colspan="2">
@@ -52,8 +52,8 @@ pag.edit.tpl
 	</tr>
 
 
-pag.list.tpl
-============
+page.list.tpl
+=============
 
 	<div id="togglemap">
 		{GEOMAP}
