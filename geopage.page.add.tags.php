@@ -30,8 +30,6 @@ if((float)$pag['page_geo_latitude']!=null && (float)$pag['page_geo_longitude']!=
 	cot_mapmarker(htmlspecialchars($pag['page_title']), (float)$pag['page_geo_latitude'], (float)$pag['page_geo_longitude']);
 }
 
-$GEOBUT = '<button name="geolocate" type="button" id="geolocate" style="display:none;">'.$L['geolocate'].'</button>	
-<button id="showonmap" name="showonmap" type="button" style="display:none;">'.$L['showonmap'].'</button>';
 list($gx, $gy) = explode(' x ', $cfg['plugin']['geopage']['addeditsize'], 2);
 $GEOJS = '<div id="map_canvas" style="display:none;width: '.$gx.'; height: '.$gy.';"></div>';
 $t->assign('GEOMAP', $GEOJS);

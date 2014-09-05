@@ -20,5 +20,3 @@ $L['cfg_radio'] = array('radio', 'radio desc');
 $L['cfg_separatortext'] = 'separator text';
 $L['cfg_range'] = array('range', 'range desc');
 $L['cfg_textarea'] = array('textarea', 'textarea desc');
-
-?>

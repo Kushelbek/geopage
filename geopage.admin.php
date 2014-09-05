@@ -57,6 +57,11 @@ $jj = 0;
 foreach ($sql->fetchAll() as $pag)
 {
 	$jj++;
+	if(!$pag['page_geo_latitude'] || !$pag['page_geo_longitude'])
+	{
+		list($pag['page_geo_latitude'], $pag['page_geo_longitude'])
+			= cot_mapgetlatlng($pag['page_geo_country'], $pag['page_geo_region'], $pag['page_geo_locality'], $pag['page_geo_street']);
+	}
 	$geo_t->assign(cot_generate_pagetags($pag, 'PAGE_ROW_'));
 	$geo_t->assign(array(
 		'PAGE_ROW_GEO_COUNTRY' => cot_inputbox('text', 'rpage_geo_country['.$pag['page_id'].']', $pag['page_geo_country'], 'class="geo_country"'),
@@ -83,4 +88,3 @@ $geo_t->assign(array(
 $geo_t->parse('MAIN');
 $plugin_body = $geo_t->text('MAIN');
 
-cot_print(cot_mapgetlatlng("Беларусь", "", "Mинск", "Ландера 22"));

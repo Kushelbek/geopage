@@ -16,7 +16,7 @@
  * [END_COT_EXT]
  * 
  * [BEGIN_COT_EXT_CONFIG]
- * engine=01:select:googlev3:googlev3:Maps Engine
+ * engine=01:select:googlev3,yandexv2:googlev3:Maps Engine
  * key=02:string:::Key
  * defzoom=03:string::1:Default zoom
  * deflat=04:string::0:Default latitude

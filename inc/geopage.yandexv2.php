@@ -23,8 +23,8 @@ function cot_mapinicialize($mapdivid, $lat, $lng, $zoom, $autocenter = true, $ke
 		var places = [];
 		'.$map_places.'
   ');
-	cot_rc_link_footer("http://maps.google.com/maps/api/js??libraries=geometry&sensor=true");
-	cot_rc_link_footer($cfg['plugins_dir'] . "/geopage/js/geopage.googlev3.js");
+	cot_rc_link_footer("http://api-maps.yandex.ru/2.1/?lang=ru_RU");
+	cot_rc_link_footer($cfg['plugins_dir'] . "/geopage/js/geopage.yandexv2.js");
 
 }
 

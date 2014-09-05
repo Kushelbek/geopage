@@ -13,7 +13,19 @@ defined('COT_CODE') or die('Wrong URL');
 
 $L['geolocate'] = 'Геолокация';
 $L['ungeolocate'] = 'Обратная геолокация';
+$L['getgeolocate'] = 'Определить местоположение';
 $L['showonmap'] = 'Показать на карте';
+
+$L['cfg_engine'] = array('Движок карты');
+$L['cfg_key'] = array('Лицензионный ключ, если требуется');
+$L['cfg_defzoom'] = array('Масштаб по умолчанию');
+$L['cfg_deflat'] = array('Широта по умолчание');
+$L['cfg_deflon'] = array('Долгота по умолчанию');
+$L['cfg_pointzoom'] = array('Масштаб в режиме одной точки');
+$L['cfg_addeditsize'] = array('Размер карты при редактировании страницы');
+$L['cfg_pagesize'] = array('Размер карты на странице');
+$L['cfg_listsize'] = array('Размер карты в списках');
+
 
 $L['page_title'] = 'Показать на карте';
 $L['page_map_lat'] = 'Широта';
@@ -28,5 +40,3 @@ $L['geo_locality'] = 'Город';
 $L['geo_street'] = 'Адрес';
 $L['geo_longitude'] = 'Долгота';
 $L['geo_latitude'] = 'Широта';
-
-?>

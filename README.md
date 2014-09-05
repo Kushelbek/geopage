@@ -14,7 +14,9 @@ page.add.tpl
 			{PHP.L.geo_country}: {PAGEADD_FORM_GEO_COUNTRY} {PHP.L.geo_region}: {PAGEADD_FORM_GEO_REGION}<br/> 
 			{PHP.L.geo_locality}: {PAGEADD_FORM_GEO_LOCALITY}
 			{PHP.L.geo_street}: {PAGEADD_FORM_GEO_STREET}
-			<br />{GEOBUTTONS}
+			<br />
+			<button name="geolocate" type="button" id="geolocate" style="display:none;">{PHP.L.getgeolocate}</button>	
+			<button id="showonmap" name="showonmap" type="button" style="display:none;">{PHP.L.showonmap}</button>
 		</td>
 	</tr>
 	<tr>
@@ -37,7 +39,9 @@ page.edit.tpl
 			{PHP.L.geo_locality}: {PAGEEDIT_FORM_GEO_LOCALITY}
 			<!--{PHP.L.rayon}: {PAGEEDIT_FORM_GEO_RAYON}-->
 			{PHP.L.geo_street}: {PAGEEDIT_FORM_GEO_STREET}
-			<br />{GEOBUTTONS}
+			<br />
+			<button name="geolocate" type="button" id="geolocate" style="display:none;">{PHP.L.getgeolocate}</button>	
+			<button id="showonmap" name="showonmap" type="button" style="display:none;">{PHP.L.showonmap}</button>
 		</td>
 	</tr>
 	<tr>
